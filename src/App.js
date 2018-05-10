@@ -5,109 +5,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
-// let fakeServerData = [ 
-//  {  title: 'indoor',
-//     background: 'https://fakeimg.pl/1500x755/',
-//     featuredImage: '',
-//     float: 'left',
-//     content: 'Duis ullamco eiusmod veniam aliquip ea ipsum magna tempor qui Lorem sit. Id amet enim commodo eiusmod laborum reprehenderit. Elit fugiat velit elit veniam ea Lorem velit irure ea ipsum magna. Laborum excepteur sit aliqua veniam elit enim est eu non ex est. Dolor labore dolore eiusmod ad tempor.',
-//     products: 
-//       [ {
-//             name: 'Example Product',
-//             price: '49.99',
-//             cartLink: "#",
-//             imageURL: 'https://fakeimg.pl/150/'
-
-//         },
-//          {
-//             name: 'Example Product',
-//             price: '49.99',
-//             cartLink: "#",
-//             imageURL: 'https://fakeimg.pl/150/'
-
-//         },
-//         {
-//             name: 'Example Product',
-//             price: '49.99',
-//             cartLink: "#",
-//             imageURL: 'https://fakeimg.pl/150/'
-
-//         },
-//         {
-//             name: 'Example Product',
-//             price: '49.99',
-//             cartLink: "#",
-//             imageURL: 'https://fakeimg.pl/150/'
-
-//         }]
-    
-//  },
-//  {  title: 'outdoor',
-//     background: 'https://fakeimg.pl/1500x755/',
-//     featuredImage: '',
-//     float: 'right',
-//     content: 'Duis ullamco eiusmod veniam aliquip ea ipsum magna tempor qui Lorem sit. Id amet enim commodo eiusmod laborum reprehenderit. Elit fugiat velit elit veniam ea Lorem velit irure ea ipsum magna. Laborum excepteur sit aliqua veniam elit enim est eu non ex est. Dolor labore dolore eiusmod ad tempor.',
-//     products: 
-//        [{
-//           name: 'Example Product',
-//           price: '49.99',
-//           cartLink: "#",
-//           imageURL: 'https://fakeimg.pl/150/'
-
-//       },
-//        {
-//           name: 'Example Product',
-//           price: '49.99',
-//           cartLink: "#",
-//           imageURL: 'https://fakeimg.pl/150/'
-
-//       },
-//       {
-//           name: 'Example Product',
-//           price: '49.99',
-//           cartLink: "#",
-//           imageURL: 'https://fakeimg.pl/150/'
-
-//       },
-//       {
-//           name: 'Example Product',
-//           price: '49.99',
-//           cartLink: "#",
-//           imageURL: 'https://fakeimg.pl/150/'
-
-//       }]
-  
-//  },
-//  {  title: 'in-wall',
-//     background: 'https://fakeimg.pl/1500x755/',
-//     featuredImage: '',
-//     float: 'left',
-//     content: 'Duis ullamco eiusmod veniam aliquip ea ipsum magna tempor qui Lorem sit. Id amet enim commodo eiusmod laborum reprehenderit. Elit fugiat velit elit veniam ea Lorem velit irure ea ipsum magna. Laborum excepteur sit aliqua veniam elit enim est eu non ex est. Dolor labore dolore eiusmod ad tempor.',
-//     products: [
-//          {name: 'Example Product',
-//           price: '49.99',
-//           cartLink: "#",
-//           imageURL: 'https://fakeimg.pl/150/'
-//          },
-//          {name: 'Example Product',
-//          price: '49.99',
-//          cartLink: "#",
-//          imageURL: 'https://fakeimg.pl/150/'
-
-//         },
-//         {name: 'Example Product',
-//         price: '49.99',
-//         cartLink: "#",
-//         imageURL: 'https://fakeimg.pl/150/'
-
-//        },
-//   ]
-      
-//   }
- 
-// ];
-
-
 function HeroTitle(props) {
     return( 
         <h1>{props.title}</h1>
@@ -207,12 +104,15 @@ class CategorySection extends Component {
 }
 
 class App extends Component {
-    constructor() {
-        super();
-        this.state = {serverData: fakeServerData}
+    state = { categories: [] }
+    componentDidMount() {
+      fetch('/categories')
+      .then(res => res.json())
+      .then(categories => this.setState({ categories }))
     }
+
     render() {
-        let data = this.state.serverData;
+        let data = this.state.categories;
         let DataToRender = data && data.title ? data.map(category =>{
             let title = data.title
             let background = data.background
