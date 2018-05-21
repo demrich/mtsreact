@@ -2,9 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const User = require('../models/users');
 
+
+/// Sign Up
 router.post('/signup', (req, res, next) => {
     User.find({
             username: req.body.username
@@ -51,6 +54,56 @@ router.post('/signup', (req, res, next) => {
             })
         });
 });
+
+
+//Sign-in
+
+router.post('/login', (req, res, next) => {
+//check to see if we have a user
+    User.find({ username: req.body.username })
+        .exec()
+        .then(user => {
+            if(user.length < 1) {
+                return res.status(401).json({
+                    message: 'Auth failed'
+                })
+            }
+            //check if existing user 
+            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+                if(err) {
+                    return res.status(401).json({
+                        message: 'Auth failed'
+                    });
+                }
+                if(result) {
+            // Add token
+                  const token = jwt.sign({
+                        username:user[0].username,
+                        userId: user[0]._id
+                    }, 
+                    process.env.JWT_KEY,
+                    {
+                        expiresIn: "1hr"
+                    }
+                );
+
+                    return res.status(500).json({
+                        message: 'Auth Successful',
+                        token: token
+                    })
+                }
+                res.status(401).json({
+                    message: 'Auth failed'
+                })
+            })
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        })
+})
 
 
 router.delete('/:userId', (req, res, next) => {
