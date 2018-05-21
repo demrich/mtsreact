@@ -47,7 +47,8 @@ class HeroCategory extends Component {
 class CategorySection extends Component {
 
     render() {
-      
+
+        
 ///////////// CSS STYLES////////////////////////////
         let categoryBackground = {
             background: 'url(' + this.props.background + ') no-repeat',
@@ -90,7 +91,7 @@ class CategorySection extends Component {
 
 
       return (
-        <div key={this.props.title} className="category" >
+        <div {...this.props} className="category" >
         <div style={categoryBackground}></div>
         <div style={titleBar}>
         <h2 style= {title}>{this.props.title}</h2>
@@ -106,6 +107,7 @@ class CategorySection extends Component {
 class App extends Component {
     state = { categories: [] }
     componentDidMount() {
+     
       fetch('/categories')
       .then(res => res.json())
       .then(categories => this.setState({ categories }))
