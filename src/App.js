@@ -4,6 +4,7 @@ import MediaQuery from 'react-responsive';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import axios from 'axios';
 
 function HeroTitle(props) {
     return( 
@@ -30,7 +31,7 @@ function HeroTitle(props) {
             {this.props.products}
         </Slider>
         </div>
-      );
+      )
     }
   }
 
@@ -105,44 +106,45 @@ class CategorySection extends Component {
 }
 
 class App extends Component {
-    state = { categories: [] }
+    state = { 
+        categories: [],
+        products: []
+    }
+
     componentDidMount() {
-     
-      fetch('/categories')
-      .then(res => res.json())
-      .then(categories => this.setState({ categories }))
+    function getCategories(){
+            return axios.get('http://localhost:3001/categories')
+    }
+    function getProducts(){
+        return axios.get('http://localhost:3001/products')
+    }
+    axios.all([getCategories(), getProducts()])
+        .then(axios.spread((categories, products) => {
+            let self = this;
+            self.setState({
+                categories: categories,
+                products: products
+            });
+
+        }));
     }
 
     render() {
-        let data = this.state.categories;
-        let DataToRender = data && data.title ? data.map(category =>{
-            let title = data.title
-            let background = data.background
-            let content = data.content
-
-            let product = data.products.map(product => {
-              let productName = product.name
-              let productPrice = product.price
-              let productLink = product.cartLink
-              return productName || productPrice || productLink
-            })
-
-            return title || background || content || product
-        }) : []
-        
+        let categories = this.state.categories.data
+        let products = this.state.products.data
         return (
         <div className="app">
-            {data ?
+            {categories ? 
             <div>
             <HeroCategory />
-            {data.map((category, i) => {
+            {categories.categories.map((category, i) => {
               let autoMargin = {
                 margin: 'auto'
               }
 
-              let displayProduct = category.products.map ((product, i) => {
+              let displayProduct = products.products.map ((product, i) => {
                 return (
-                <div>
+                <div key={i}>
                   <img style={autoMargin} src={product.imageURL} />
                   <h4>{product.name}</h4>
                   <h5>{product.price}</h5>
@@ -154,7 +156,8 @@ class App extends Component {
               key={i} 
               title={category.title} background= {category.background} 
               content={category.content} products={displayProduct} />
-              )}
+              )
+            }
           )}          
             </div>
            : '...loading' }

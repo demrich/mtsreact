@@ -40,8 +40,8 @@ exports.categories_post_category = (req, res, next) => {
     const category = new Category({
         _id: new mongoose.Types.ObjectId(),
         title: req.body.title,
-        background: req.body.background,
-        featuredImage: req.file.path,
+        background: req.files['background'][0].path,
+        featuredImage: req.files['featuredImage'][0].path,
         float: req.body.float,
         content: req.body.content
     });

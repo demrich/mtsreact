@@ -1,5 +1,6 @@
 const Product = require('../models/products');
 const Category = require('../models/categories');
+const mongoose = require('mongoose');
 
 exports.products_get_all = (req, res, next) => {
     Product.find()
@@ -15,6 +16,7 @@ exports.products_get_all = (req, res, next) => {
                         price: doc.price,
                         cartLink: doc.cartLink,
                         imageURL: doc.imageURL,
+                        sku: doc.sku,
                         category: doc.category,
                         request: {
                             type: 'GET',
@@ -39,11 +41,12 @@ exports.products_create_product = (req, res, next) => {
         name:  req.body.name,
         price:  req.body.price,
         cartLink: req.body.cartLink,
-        imageURL: req.body.imageURL,
+        imageURL: req.file.path,
+        sku: req.body.sku,
         category: req.body.categoryId
     });
     product.save()
-         .then( result => {
+         .then(result => {
             console.log(result);
             res.status(201).json({
                 message: "Product Stored",
@@ -53,12 +56,12 @@ exports.products_create_product = (req, res, next) => {
                       price: result.price,
                       cartLink: result.cartLink,
                       imageURL: result.imageURL,
+                      sku: result.sku,
                       category: result.category,
                 },
                 request: {
                     type: 'GET',
                     url:'http://localhost:3001/products/' + result._id
-
                 }
             });
          })
