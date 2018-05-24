@@ -7,7 +7,8 @@ const productSchema = mongoose.Schema({
     cartLink:  {type: String, required: true},
     imageURL:  {type: String || ""},
     sku: {type:String, required: true},
-    category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true}
+    category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true},
+    type: {type:String, required: true}
 
 });
 

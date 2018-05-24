@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 exports.products_get_all = (req, res, next) => {
     Product.find()
-        .select('_id category name price cartLink imageURL')
+        .select('_id category name price cartLink imageURL type')
         .populate('category', 'title')
         .then(docs => {
             const response = {
@@ -18,6 +18,7 @@ exports.products_get_all = (req, res, next) => {
                         imageURL: doc.imageURL,
                         sku: doc.sku,
                         category: doc.category,
+                        type: doc.type,
                         request: {
                             type: 'GET',
                             url: 'http://localhost:3001/products/' + doc._id
@@ -43,7 +44,8 @@ exports.products_create_product = (req, res, next) => {
         cartLink: req.body.cartLink,
         imageURL: req.file.path,
         sku: req.body.sku,
-        category: req.body.categoryId
+        category: req.body.categoryId,
+        type: req.body.type
     });
     product.save()
          .then(result => {
@@ -58,6 +60,7 @@ exports.products_create_product = (req, res, next) => {
                       imageURL: result.imageURL,
                       sku: result.sku,
                       category: result.category,
+                      type: result.type
                 },
                 request: {
                     type: 'GET',
