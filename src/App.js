@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom';
 import MediaQuery from 'react-responsive';
 import Slider from "react-slick";
 import Columns from "react-columns";
+import "./App.css";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
 
 let mttBlue = "#03a5ed"
 let mttOrange = "#EC7701"
+let link = {
+    textDecoration: 'none'
+}
 
 function HeroTitle(props) {
     return( 
@@ -51,10 +55,19 @@ class ProductRow extends Component {
         paddingTop: '1em',
         paddingBottom: '5em'
     }
+    let queries = [
+        {
+        columns: 2,
+        query: 'min-width: 500px'
+      }, {
+        columns: 4,
+        query: 'min-width: 1000px'
+      }];
+    
 
     return(
         <div style={productCenter}>
-            <Columns columns= "3" dimensions={dimensions}>
+            <Columns dimensions={dimensions} queries={queries}>
             {this.props.products}
             </Columns>
         </div>
@@ -79,20 +92,17 @@ class CategorySection extends Component {
             backgroundSize: 'cover', 
             backgroundPosition: 'top center',
             width: '100%',
-            height: '30rem'
         }
 
 
 
         let featuredCatImage = {
-            background: 'url(' + this.props.featuredImage + ') no-repeat',
+            background: 'url(' + this.props.featuredimage + ') no-repeat',
             backgroundSize: 'contain',
             display: 'inline-block',
             position: 'absolute',
             float: this.props.float,
-            width: '45vw',
-            minHeight:'110vh'
-
+            backgroundPosition: this.props.float,
         }
 
         let titleBar = {
@@ -108,7 +118,6 @@ class CategorySection extends Component {
 
         let title = {
             color: 'white',
-            fontSize: '3em',
             textTransform: 'uppercase',
             fontWeight: '100',
             margin: '10px 0 10px 2.5em',
@@ -119,9 +128,9 @@ class CategorySection extends Component {
             textAlign: 'center',
             fontSize: '1em',
             lineHeight: '1.5rem',
-            padding: '6% 8% 6% 8%',
             margin: 'auto',
-            fontWeight: '300'
+            fontWeight: '300',
+            width: '70%'            
         }
 
         let hr = {
@@ -150,26 +159,24 @@ class CategorySection extends Component {
             color: mttOrange
         }
 
-        if (window.matchMedia('screen and (max-width: 850px)').matches) {
-            categoryBackground.height = '40vh'
-            featuredCatImage.width= '40%'
-            title.fontSize='2em'
+        if(this.props.float === 'right'){
+            featuredCatImage.right= '0'
+            title.margin ='10px 100px 10px 0'
         }
 
-        if (window.matchMedia('screen and (max-width: 414px)').matches) {
-            categoryBackground.height = '20vh'
 
-        }
       return (
-        <div {...this.props} className="category" >
-        <div style={featuredCatImage} className="featured-image"></div>
-        <div style={categoryBackground}></div>
+        <div {...this.props} className="category">
+        <div className="featured-cat-image" style={featuredCatImage}  />
+        <div className='category-background' style={categoryBackground} />
         <div style={titleBar}>
-        <h2 style= {title}>{this.props.title}</h2>
+        <h2 className="title" style= {title}>{this.props.title}</h2>
         </div>
-        <p style={content}>{this.props.content}</p>
+        <p className="content" style={content}>{this.props.content}</p>
         <hr style={hr} />
+        <a style={link} href={this.props.learnlink}>
         <button style={learnButton}>Learn More <span style={orangeTriangle}>&#9658;</span></button>
+        </a>
         <ProductRow products={this.props.products} />
         </div>
       )
@@ -204,7 +211,7 @@ class App extends Component {
         return (
         <div className="app">
             {categories && products ? 
-            <div>
+            <div className="site-body fade-in">
             <HeroCategory />
             {categories.categories.map((category, i) => {
               let imageSpecs = {
@@ -236,11 +243,13 @@ class App extends Component {
                if(category._id === product.category._id) {
                    return (
                     <div key={i}>
-                    <img style={imageSpecs} id={product.sku} src={product.imageURL} />
+                    <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
                     <h4 style= {productCat}>{product.type}</h4>
                     <span>{product.name}</span>
                     <h5 style={priceStyle}>${product.price}</h5>
+                    <a href={product.cartLink}>
                     <button style={productButton}>Add to Cart</button>
+                    </a>
                     </div>
                 )}
             })
@@ -251,14 +260,16 @@ class App extends Component {
               title={category.title} 
               background= {category.background}
               float = {category.float}
-              featuredImage = {category.featuredImage} 
+              featuredimage = {category.featuredImage} 
               content={category.content} 
+              learnlink={category.learnLink}
               products={displayProduct} />
+              
               )
             }
           )}          
             </div>
-           : '...loading' }
+           : <div className="border-loading-indicator col-2 row-2"></div> }
         </div>
         );
     }

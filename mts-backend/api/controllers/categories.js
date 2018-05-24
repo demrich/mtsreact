@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 exports.categories_get_categories = (req, res, next) => {
     Category.find()
-        .select('title background featuredImage float content _id')
+        .select('title background featuredImage float content learnLink _id')
         .exec()
         .then(docs => {
             const response = {
@@ -18,6 +18,7 @@ exports.categories_get_categories = (req, res, next) => {
                         featuredImage: doc.featuredImage,
                         float: doc.float,
                         content: doc.content,
+                        learnLink: doc.learnLink,
                         request: {
                             type: 'GET',
                             url: 'http://localhost:3001/categories/' + doc._id
@@ -43,7 +44,8 @@ exports.categories_post_category = (req, res, next) => {
         background: req.files['background'][0].path,
         featuredImage: req.files['featuredImage'][0].path,
         float: req.body.float,
-        content: req.body.content
+        content: req.body.content,
+        learnLink: req.body.learnLink
     });
     category.save()
         .then((result) => {
@@ -57,6 +59,7 @@ exports.categories_post_category = (req, res, next) => {
                     featuredImage: result.featuredImage,
                     float: result.float,
                     content: result.content,
+                    learnLink: result.learnLink,
                     request: {
                         type: 'GET',
                         url: 'http://localhost:3001/categories/' + result._id
@@ -75,7 +78,7 @@ exports.categories_post_category = (req, res, next) => {
 exports.categories_get_category = (req, res, next) => {
     const id = req.params.categoryId;
     Category.findById(id)
-    .select('title background featuredImage float content _id')
+    .select('title background featuredImage float content learnLink _id')
     .exec()
     .then(doc => {
         console.log("From Database", doc)

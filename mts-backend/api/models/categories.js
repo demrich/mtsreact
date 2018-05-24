@@ -6,7 +6,8 @@ const categorySchema = mongoose.Schema({
     background: {type: String, required: true},
     featuredImage: {type: String, required: true},
     float: {type: String, required: true},
-    content: {type: String, required: true}
+    content: {type: String, required: true},
+    learnLink: {type: String, default: '#'}  
 });
 
 module.exports = mongoose.model('Category', categorySchema);
