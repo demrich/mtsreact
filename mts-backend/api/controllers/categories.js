@@ -1,4 +1,3 @@
-const Product = require('../models/products');
 const Category = require('../models/categories');
 const mongoose = require('mongoose');
 

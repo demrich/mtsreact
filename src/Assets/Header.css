@@ -1,0 +1,28 @@
+body{
+    margin-top: 5em;
+
+}
+.header {
+    color: white;
+    background: black;
+    height: 5em;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+span.title{
+vertical-align: middle;
+}
+
+span.shop-title{
+    margin-right: 2em;
+}
+
+span.learn-title{
+    margin-left: 2em;
+}

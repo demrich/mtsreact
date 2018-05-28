@@ -52,16 +52,23 @@
   padding: 6% 8% 6% 8%;
 }
 
+@media(max-width: 1024px) {
+  .featured-cat-image {
+    max-width: 32em;
+    min-height: 48em;
+  }
+}
+
 
 @media(max-width: 850px){
 
   .category-background{
-    height: 40vh;
+    max-height: 20em;
   }
 
   .featured-cat-image{
-    width: 15em;
-  }
+    min-width: 30em;
+    min-height: 30em;  }
 
   .title{
     font-size: 1.8em;
@@ -75,22 +82,38 @@
 
 @media(max-width: 414px){
   .category-background{
-    height: 20vh;
+    max-height: 12em;
   }
   .featured-cat-image{
-    width: 40%;
+    min-width: 50%;
+    min-height: 18em;
+  
   }
 
   .content {
     padding: 10% 8%;
   }
+  .title {
+    font-size: 1.35em;
+  }
 }
 
-
+@media(max-width: 375px){
+  .category-background{
+    min-height: 11em;
+  }
+  .featured-cat-image{
+    min-height: 19em;
+  }
+  .title{
+    font-size: 1.2em;
+    }
+}
 @media(min-width: 1090px){
   .featured-cat-image{
     width: 50%;
   }
+
 }
 
 
@@ -98,25 +121,25 @@
 /* loading... */
 @keyframes border-loading-indicator-row-1 {
   0% {
-    border-color: rgba(0, 0, 0, 0.25);
-    border-top-color: black;
-  }
-  25% {
-    border-color: rgba(0, 0, 0, 0.25);
-    border-right-color: black;
-  }
-  50% {
-    border-color: rgba(0, 0, 0, 0.25);
-    border-bottom-color: black;
-  }
-  75% {
-    border-color: rgba(0, 0, 0, 0.25);
-    border-left-color: black;
-  }
-  100% {
-    border-color: rgba(0, 0, 0, 0.25);
-    border-top-color: black;
-  }
+    border-color: rgba(236, 119, 1, 1) rgba(236, 119, 1, .75) 
+    rgba(236, 119, 1, 1) rgba(236, 119, 1, .75);
+}
+
+25% {
+    border-color: rgba(236, 119, 1, .75) #03a5ed 
+    rgba(236, 119, 1, 1) rgba(236, 119, 1, .75);
+}
+50% {
+    border-color: rgba(236, 119, 1, .75) rgba(236, 119, 1, .75) 
+    #03a5ed rgba(236, 119, 1, 1);
+}
+75% {
+    border-color:#03a5ed rgba(236, 119, 1, .5) rgba(236, 119, 1, .75) rgba(236, 119, 1, .75);
+}
+100% {
+    border-color: #03a5ed rgba(236, 119, 1, 1)
+     rgba(236, 119, 1, .5) rgba(236, 119, 1, .75);
+}
 }
 @keyframes border-loading-indicator-row-2 {
   0% {

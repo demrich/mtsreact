@@ -5,7 +5,8 @@ const productSchema = mongoose.Schema({
     name:  {type: String, required: true},
     price:  {type: Number, required: true},
     cartLink:  {type: String, required: true},
-    imageURL:  {type: String || ""},
+    imageURL:  {type: String || "#"},
+    productURL: {type: String || "#"},
     sku: {type:String, required: true},
     category: {type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true},
     type: {type:String, required: true}

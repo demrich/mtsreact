@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import MediaQuery from 'react-responsive';
 import Slider from "react-slick";
 import Columns from "react-columns";
-import "./App.css";
+import Header from './Components/Header';
+import Footer from './Components/Footer'
+import "./Assets/App.css";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
@@ -60,7 +62,7 @@ class ProductRow extends Component {
         columns: 2,
         query: 'min-width: 500px'
       }, {
-        columns: 4,
+        columns: 3,
         query: 'min-width: 1000px'
       }];
     
@@ -212,11 +214,12 @@ class App extends Component {
         <div className="app">
             {categories && products ? 
             <div className="site-body fade-in">
+            <Header />
             <HeroCategory />
             {categories.categories.map((category, i) => {
               let imageSpecs = {
                 margin: 'auto',
-                width: '150px'
+                width: '15em'
               }
               let displayProduct = products.products.map ((product, i) => {
                   let productCat = {
@@ -243,7 +246,9 @@ class App extends Component {
                if(category._id === product.category._id) {
                    return (
                     <div key={i}>
+                    <a key={product.sku} href={product.productURL}>
                     <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
+                    </a>
                     <h4 style= {productCat}>{product.type}</h4>
                     <span>{product.name}</span>
                     <h5 style={priceStyle}>${product.price}</h5>
@@ -267,9 +272,11 @@ class App extends Component {
               
               )
             }
-          )}          
+          )}
+          <Footer />          
             </div>
            : <div className="border-loading-indicator col-2 row-2"></div> }
+        
         </div>
         );
     }
