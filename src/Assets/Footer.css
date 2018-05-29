@@ -1,6 +1,59 @@
-.footer{
-    height: 15em;
+.footer {
     background: black;
     position: relative;
     bottom: 0;
+    color: white;
 }
+
+img.byjasco {
+    width: 8em;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+div.footer-content {
+    display: flex;
+    width: 80%;
+    align-content: center;
+    justify-content: center;
+    border-width: .5px 0;
+    border-color: white;
+    border-style: solid;
+    margin: auto;
+    padding: 20px 0;
+}
+
+div.footer-col {
+    flex: 1;
+}
+div.footer-col > ul {
+    padding: 0;
+
+}
+
+div.footer-col > ul > li {
+    list-style-type: none;
+}
+
+.footer-notes {
+    display: block;
+    position: relative;
+    width: 80%;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-size: .75em;
+}
+
+
+@media(max-width:768px) {
+    div.footer-content {
+    flex-direction: column;
+    flex-wrap: wrap;
+    }
+}
+
+

@@ -16,12 +16,6 @@ let link = {
     textDecoration: 'none'
 }
 
-function HeroTitle(props) {
-    return( 
-        <h1>{props.title}</h1>
-    )
-  }
-
   class SimpleSlider extends React.Component {
     render() {
       let slideSettings = {
@@ -32,7 +26,7 @@ function HeroTitle(props) {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
       };
       return (
@@ -44,6 +38,39 @@ function HeroTitle(props) {
       )
     }
   }
+
+  class HeroSlides extends React.Component {
+    render() {
+      let slideSettings = {
+        minWidth: '100%', 
+      }
+      var settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      };
+      return (
+        <div style={slideSettings}>
+        <Slider {...settings}>
+            {this.props.heroimages}
+        </Slider>
+        </div>
+      )
+    }
+  }
+
+class HeroSection extends Component {
+    render() {
+        return(
+            <div>
+                <HeroSlides  />
+                <SimpleSlider />
+            </div>
+        )
+    }
+}
 
 class ProductRow extends Component {
    
@@ -75,16 +102,6 @@ class ProductRow extends Component {
         </div>
     )}
 }
-
-class HeroCategory extends Component {
-    render(){
-    return(
-        <HeroTitle title="MyTouchSmart Indoor Timers" />
-    )
-    }
-}
-
-
 
 class CategorySection extends Component {
 
@@ -215,7 +232,7 @@ class App extends Component {
             {categories && products ? 
             <div className="site-body fade-in">
             <Header />
-            <HeroCategory />
+            <HeroSection />
             {categories.categories.map((category, i) => {
               let imageSpecs = {
                 margin: 'auto',

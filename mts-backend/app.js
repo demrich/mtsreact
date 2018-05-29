@@ -8,6 +8,7 @@ const mongoose = require('mongoose');
 const categoriesRoutes = require('./api/routes/categories');
 const productsRoutes = require('./api/routes/products');
 const userRoutes = require('./api/routes/users');
+const heroRoutes = require('./api/routes/heroes');
 
 //Connect
 mongoose.connect('mongodb://demrich:'+ process.env.MONGO_PASS +'@node-rest-shop-shard-00-00-a8cxc.mongodb.net:27017,node-rest-shop-shard-00-01-a8cxc.mongodb.net:27017,node-rest-shop-shard-00-02-a8cxc.mongodb.net:27017/test?ssl=true&replicaSet=node-rest-shop-shard-0&authSource=admin&retryWrites=false'); 
@@ -37,6 +38,8 @@ app.use((req, res, next) => {
 app.use('/categories', categoriesRoutes);
 app.use('/products', productsRoutes);
 app.use('/user', userRoutes);
+app.use('/heroes', heroRoutes);
+
 
 // Response Handling
 app.use((req, res, next) => {

@@ -13,6 +13,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-weight: 100;
 }
 
 span.title{
@@ -20,9 +21,24 @@ vertical-align: middle;
 }
 
 span.shop-title{
-    margin-right: 2em;
+    margin-right: 6em;
 }
 
 span.learn-title{
-    margin-left: 2em;
+    margin-left: 6em;
+}
+
+img.logo{
+    width:3em;
+}
+
+div.outputs {
+    position: absolute;
+    right: 5%;
+    color: #EC7701;
+}
+
+div.outputs > ul > li {
+    display: inline-block;
+    padding-right: 20px;
 }
