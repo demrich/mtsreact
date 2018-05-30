@@ -76,6 +76,23 @@
 
 }
 
+.slick-dots{
+  bottom:.5em;
+}
+
+.slick-next{
+  right:25px;
+}
+
+.slick-prev{
+  left:25px;
+  z-index: 100;
+}
+
+.slick-prev:before, .slick-next:before {
+  color:#03a5ed;
+}
+
 
 
 

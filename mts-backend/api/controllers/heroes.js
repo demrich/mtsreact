@@ -66,7 +66,7 @@ exports.heroes_post_hero = (req, res, next) => {
 }
 
 exports.heroes_get_hero = (req, res, next) => {
-    const id = req.params.HeroId;
+    const id = req.params.heroId;
     Hero.findById(id)
     .select('title heroImage button _id')
     .exec()
@@ -94,7 +94,7 @@ exports.heroes_get_hero = (req, res, next) => {
 }
 
 exports.heroes_edit_hero = (req, res, next) => {
-    const id = req.params.HeroId
+    const id = req.params.heroId
     const updateOps = {};
     for(const ops of req.body) {
         updateOps[ops.propName] = ops.value;
@@ -118,7 +118,7 @@ exports.heroes_edit_hero = (req, res, next) => {
 }
 
 exports.heroes_delete_hero = (req, res, next) => {
-    const id = req.params.HeroId
+    const id = req.params.heroId
     Hero.remove({_id: id})
     .exec()
     .then(result => {

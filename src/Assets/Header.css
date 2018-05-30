@@ -2,6 +2,7 @@ body{
     margin-top: 5em;
 
 }
+
 .header {
     color: white;
     background: black;
@@ -16,16 +17,34 @@ body{
     font-weight: 100;
 }
 
+.desktop-mobile{
+    display: none;
+}
+
 span.title{
 vertical-align: middle;
 }
 
-span.shop-title{
+a.shop-title{
     margin-right: 6em;
+    text-decoration: none;
+    color: white;
+
 }
 
-span.learn-title{
+a.learn-title{
     margin-left: 6em;
+    text-decoration: none;
+    color: white;
+}
+
+a.learn-title > a:visited{
+    color: white;
+    text-decoration: none;
+}
+a.shop-title> a:visited{
+    color: white;
+    text-decoration: none;
 }
 
 img.logo{
@@ -35,10 +54,26 @@ img.logo{
 div.outputs {
     position: absolute;
     right: 5%;
+    top:10%;
     color: #EC7701;
 }
 
 div.outputs > ul > li {
     display: inline-block;
     padding-right: 20px;
+    font-size:2em;
+}
+div.outputs > ul > li > a:visited {
+    color: #EC7701;
+
+}
+
+@media(max-width:665px) {
+    .desktop-header{
+        display:none;
+    }
+
+    .desktop-mobile{
+        display:show;
+    }
 }
