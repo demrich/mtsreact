@@ -10,7 +10,9 @@ export default class Footer extends Component {
 
     return (
       <div className="footer">
+       <a href="https://byjasco.com">
         <img className="byjasco" alt="" src={byJasco} />
+        </a>
         <div className="footer-content">
 
         <div className="footer-col">
@@ -21,8 +23,8 @@ export default class Footer extends Component {
         <div className="footer-col">
         <h3>Need Help?</h3>
         <ul>
-            <li>Visit Support</li>
-            <li>Jasco Online Store</li>
+            <li><a href="https://byjasco.com/support">Visit Support </a></li>
+            <li><a href="https://byjasco.com/brands/mytouchsmart">Jasco Online Store</a></li>
         </ul>
         
         </div>

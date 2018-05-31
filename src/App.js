@@ -5,12 +5,13 @@ import Learn from './Components/Learn';
 import Shop from './Components/Shop';
 import Footer from './Components/Partials/Footer';
 import "./Assets/App.css";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import Route from 'react-router-dom/Route'
 import 'font-awesome/css/font-awesome.min.css';
 
 
-
+  
+  
 class App extends Component {
     render() {       
         return(
