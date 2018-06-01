@@ -24,7 +24,9 @@ export default class Learn extends Component {
         }
     ]
     }
-
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
     render(){
         let div={
             minHeight: "20em",
@@ -75,18 +77,21 @@ export default class Learn extends Component {
                         color: mttOrange
                     }
                     let learnImage={
-                        maxWidth: '100vw',
+                        margin: 'auto',
                         paddingBottom: '4em'
+                    }
+
+                    let learnSection = {
+                        textAlign: 'center'
                     }
                     let shopLink= "/mytouchsmart/#/shop#" + learn.id;
                 return(
-            <div key={learn.id}>
-                <img style={learnImage} src={learn.imageUrl} alt={learn.name}  />
-                {console.log(learn.imageUrl)}
+            <div style={learnSection} key={learn.id}>
+                <img className='learn-image' style={learnImage} src={learn.imageUrl} alt={learn.name}  />
                 <hr style={hr} />
                 <a style={link} href={shopLink}>
                     <button style={learnButton}>Shop {learn.name}
-                        <span style={orangeTriangle}>&#9658;</span>
+                         <span style={orangeTriangle}>&#9658;</span>
                     </button>
                 </a>
             </div>

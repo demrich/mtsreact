@@ -3,6 +3,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import axios from 'axios';
+import Modal from 'react-responsive-modal';
+import { Link } from 'react-router-dom';
+import YouTube from 'react-youtube';
+
 
 let mttBlue = "#03a5ed"
 let mttOrange = "#EC7701"
@@ -10,12 +14,35 @@ let link = {
     textDecoration: 'none'
 }
 
-let vidLink = "https://www.youtube.com/watch?v=CPTrxlio6Z4"
-
-
+class YoutubeVid extends React.Component {
+    render() {
+      const opts = {
+        height: '390',
+        width: '640',
+        playerVars: { // https://developers.google.com/youtube/player_parameters
+        }
+      };
+   
+      return (
+        <YouTube
+          videoId="CPTrxlio6Z4"
+          opts={opts}
+          onReady={this._onReady}
+        />
+      );
+    }
+   
+    _onReady(event) {
+      // access to player in all event handlers via event.target
+      event.target.pauseVideo();
+    }
+  }
+   
 
 class ProductRow extends Component {
-   
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
     render() {
     let productCenter = {
         textAlign: 'center',
@@ -126,9 +153,10 @@ class CategorySection extends Component {
         </div>
         <p className="content" style={content}>{this.props.content}</p>
         <hr style={hr} />
-        <a style={link} href={this.props.learnlink}>
-        <button style={learnButton}>Learn More <span style={orangeTriangle}>&#9658;</span></button>
-        </a>
+        <Link style={link} to="/learn" >
+        <button style={learnButton}>Learn More 
+        <span style={orangeTriangle}>&#9658;</span>
+        </button></Link>
         <ProductRow products={this.props.products} />
         </div>
       )
@@ -137,6 +165,7 @@ class CategorySection extends Component {
 
 class Home extends Component {
     state = { 
+        open: false,
         categories: [
             {
                 "_id": "5b072cd4433f9954b89871d2",
@@ -152,7 +181,7 @@ class Home extends Component {
             },
             {
                 "_id": "5b072d1e433f9954b89871d3",
-                "title": "SIMPLE SET TIMER",
+                "title": "SIMPLE SET TIMERS",
                 "background": "uploads/categories/2018-05-24T21:22:38.228ZiStock-538997271.jpg",
                 "featuredImage": "uploads/categories/2018-05-24T21:22:38.241Zsimpleset-homepage-header.png",
                 "float": "right",
@@ -164,7 +193,7 @@ class Home extends Component {
             },
             {
                 "_id": "5b072d50433f9954b89871d4",
-                "title": "SUNSMART™ TIMER",
+                "title": "SUNSMART™ TIMERS",
                 "background": "uploads/categories/2018-05-24T21:23:28.574ZiStock_57260278_MEDIUM.jpg",
                 "featuredImage": "uploads/categories/2018-05-24T21:23:28.589Zsunsmart-homepage-header.png",
                 "float": "left",
@@ -282,7 +311,7 @@ class Home extends Component {
                 "price": 12.99,
                 "cartLink": "https://byjasco.com/products/1276/add-to-cart",
                 "imageURL": "uploads/products/2018-05-25T17:04:12.363Z36253.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/mytouchsmart-indoor-simple-set-plug-digital-bar-timer",
                 "sku": "36253",
                 "category": {
                     "_id": "5b072d1e433f9954b89871d3",
@@ -299,7 +328,7 @@ class Home extends Component {
                 "price": 29.99,
                 "cartLink": "https://byjasco.com/products/1278/add-to-cart",
                 "imageURL": "uploads/products/2018-05-25T17:05:34.526Z35166.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/mytouchsmart-indoor-wireless-timer-system",
                 "sku": "35166",
                 "category": {
                     "_id": "5b072d1e433f9954b89871d3",
@@ -418,12 +447,19 @@ class Home extends Component {
             }
         ]
     }
-
+        onOpenModal = () => {
+            this.setState({ open: true });
+        };
+        
+        onCloseModal = () => {
+            this.setState({ open: false });
+        };
     render() {
         let categories = this.state.categories
         let products = this.state.products
         let heroes = this.state.heroes   
-        
+        let open  = this.state.open;
+
         //////Hero Slider Settings////
         let HeroSlideSettings = {
             width: '100vw', 
@@ -494,9 +530,14 @@ class Home extends Component {
             {heroes.map((hero, i) => {
                  if(hero.button === true){
                      return(
-                    <a key={i} href={vidLink}>
-                    <img key={i} style={HeroSlideSettings} alt={hero.title} src={hero.heroImage} />
-                    </a>
+                    <div key={i} >
+                    <img onClick={this.onOpenModal} key={i} style={HeroSlideSettings} alt={hero.title} src={hero.heroImage} />
+                    <Modal open={open} onClose={this.onCloseModal} center>
+                    <div>
+                        <YoutubeVid />
+                    </div>
+                    </Modal>
+                    </div>
                      )
                     }
                 return(
@@ -527,12 +568,37 @@ class Home extends Component {
                       textTransform: 'uppercase'
 
                   }
+                  let productButtonDisabled = {
+                    background: 'grey',
+                    color: 'white',
+                    padding: '.5em 1em .5em 1em',
+                    border: 'none',
+                    borderRadius: '1em',
+                    fontSize: '1em',
+                    textTransform: 'uppercase',
+
+                }
                   let imageSpecs = {
                     margin: 'auto',
                     width: '15em'
                   }
             ///Slider Products
-                  return(
+            if(product.cartLink === "#"){
+                return(
+                    <div key={i} >
+                    <div style={ProductSlideSettings} >
+                    <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
+                    <h4 style= {productCat}>{product.type}</h4>
+                    <span>{product.name}</span>
+                    <h5 style={priceStyle}>${product.price}</h5>
+                    <button className="prod-button" style={productButtonDisabled}>Coming Soon...</button>
+                    </div>
+                    </div>
+                  )
+            }
+
+            else{
+                return(
                     <div key={i} >
                     <div style={ProductSlideSettings} >
                     <a alt={product.name} href={product.productURL}>
@@ -547,6 +613,8 @@ class Home extends Component {
                     </div>
                     </div>
                   )
+            }
+                  
             })}
             </Slider>
 
@@ -576,21 +644,43 @@ class Home extends Component {
                       fontSize: '1em',
                       textTransform: 'uppercase'
                   }
+                  let productButtonDisabled = {
+                    background: 'grey',
+                    color: 'white',
+                    padding: '.5em 1em .5em 1em',
+                    border: 'none',
+                    borderRadius: '1em',
+                    fontSize: '1em',
+                    textTransform: 'uppercase'
+                }
             ///Products
                if(category._id === product.category._id) {
-                   return (
-                    <div className="product-card" key={i}>
-                    <a key={product.sku} href={product.productURL}>
-                    <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
-                    </a>
-                    <h4 style= {productCat}>{product.type}</h4>
-                    <span>{product.name}</span>
-                    <h5 style={priceStyle}>${product.price}</h5>
-                    <a href={product.cartLink} target="_blank">
-                    <button className="prod-button" style={productButton}>Add to Cart</button>
-                    </a>
-                    </div>
-                )}
+                   if(product.cartLink === '#'){
+                    return (
+                        <div className="product-card" key={i}>
+                        <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
+                        <h4 style= {productCat}>{product.type}</h4>
+                        <span>{product.name}</span>
+                        <h5 style={priceStyle}>${product.price}</h5>
+                        <button className="prod-button" style={productButtonDisabled}>Coming Soon...</button>
+                        </div>
+                    )
+                   } else {
+                    return (
+                        <div className="product-card" key={i}>
+                        <a key={product.sku} href={product.productURL}>
+                        <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
+                        </a>
+                        <h4 style= {productCat}>{product.type}</h4>
+                        <span>{product.name}</span>
+                        <h5 style={priceStyle}>${product.price}</h5>
+                        <a href={product.cartLink} target="_blank">
+                        <button className="prod-button" style={productButton}>Add to Cart</button>
+                        </a>
+                        </div>
+                    )
+                   }
+                   }
             })
 
               return (

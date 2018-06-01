@@ -40,7 +40,9 @@ class ProductRow extends Component {
 
 
 class CategorySection extends Component {
-
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
     render() {        
         let title = {
             color: mttOrange,
@@ -395,22 +397,46 @@ class Shop extends Component {
                       textTransform: 'uppercase'
 
                   }
-            ///Products
-               if(category._id === product.category._id) {
-                   return (
-                    <div className="product-card" key={i}>
-                    <a key={product.sku} href={product.productURL}>
-                    <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
-                    </a>
-                    <h4 style= {productCat}>{product.type}</h4>
-                    <span>{product.name}</span>
-                    <h5 style={priceStyle}>${product.price}</h5>
-                    <a href={product.cartLink} target="_blank">
-                    <button style={productButton}>Add to Cart</button>
-                    </a>                    
-                    </div>
-                )}
-            })
+                  let productButtonDisabled = {
+                    background: 'grey',
+                    color: 'white',
+                    padding: '.5em 1em .5em 1em',
+                    border: 'none',
+                    borderRadius: '1em',
+                    fontSize: '1em',
+                    textTransform: 'uppercase'
+                }
+           ///Products
+           if(category._id === product.category._id) {
+            if(product.cartLink === '#'){
+             return (
+                 <div className="product-card" key={i}>
+                 <a key={product.sku} href={product.productURL}>
+                 <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
+                 </a>
+                 <h4 style= {productCat}>{product.type}</h4>
+                 <span>{product.name}</span>
+                 <h5 style={priceStyle}>${product.price}</h5>
+                 <button className="prod-button" style={productButtonDisabled}>Coming Soon...</button>
+                 </div>
+             )
+            } else {
+             return (
+                 <div className="product-card" key={i}>
+                 <a key={product.sku} href={product.productURL}>
+                 <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
+                 </a>
+                 <h4 style= {productCat}>{product.type}</h4>
+                 <span>{product.name}</span>
+                 <h5 style={priceStyle}>${product.price}</h5>
+                 <a href={product.cartLink} target="_blank">
+                 <button className="prod-button" style={productButton}>Add to Cart</button>
+                 </a>
+                 </div>
+             )
+            }
+            }
+     })
 
               return (
               <CategorySection 
