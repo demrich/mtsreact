@@ -44,9 +44,8 @@ export default class Footer extends Component {
         </div>
 
         <div className="footer-notes">
-        <span>Trademark Information  | Terms and Conditions  | Privacy Policy </span> <br />
+        <span><a href="https://byjasco.com/trademark-information?__hstc=20260967.da027c5315d85dab3ba64f6b5bc238bf.1526412895839.1527780113528.1528119111164.4&__hssc=20260967.1.1528119111164&__hsfp=2971992012" target="_blank">Trademark Information</a>  | <a href="https://byjasco.com/terms-and-conditions" target="_blank">Terms and Conditions</a>  | <a href="https://byjasco.com/privacy-policy" target="_blank">Privacy Policy</a> </span> <br />
         <span>© 2017 Jasco Products Company. </span> <br /> <br />
-        <span>GE is a trademark of General Electric Company and under license to Jasco Products LLC, 10 E. Memorial Rd., Oklahoma City, OK 73114.</span>
         </div>
         <iframe title="cart" id="result" style={cart} />
       </div>

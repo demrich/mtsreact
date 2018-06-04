@@ -16,6 +16,9 @@ body{
     justify-content: center;
     font-weight: 100;
 }
+.hero-button:hover{
+    cursor:pointer;
+}
 
 .desktop-mobile{
     display: none;
@@ -73,12 +76,38 @@ div.outputs > ul > li > a:visited {
 
 }
 
+/* Scroll-to-top Anchor*/
+
+#anchor {
+    position: absolute;
+    z-index: 999;
+    min-width: 6em;
+    min-height: 6em;
+    top: 80vh;
+    right: 5vw;
+    background:transparent url(/img/anchor.svg) center top no-repeat;
+}
+
+#anchor:hover{
+    background:transparent url(/img/anchor-hover.svg) center top no-repeat;
+    cursor: pointer;
+
+}
+
+.anchor-img:hover {
+   background-image: url(/img/anchor-hover.svg);
+}
+
 @media(max-width:650px) {
     .desktop-header{
         display:none;
     }
     img.logo{
         width:6em;
+    }
+
+    #anchor{
+        display:none;
     }
 
 }

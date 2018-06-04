@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Logo from "../../logo.png";
 import "./../../Assets/Header.css";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { animateScroll as scroll } from 'react-scroll'
 
 export default class Header extends Component {
   constructor(){
@@ -13,12 +14,22 @@ export default class Header extends Component {
   toggleMenu(){
     this.setState({hidden: !this.state.hidden})
   }
+
+  scrollToTop(){
+    scroll.scrollToTop();
+  }
+  
+  
+
+  
+  
+
   render() {
     let toggle = this.state.hidden ? "mobile-sub hidden" : "mobile-sub visible"
 
     return (
       
-      <div className="header">
+      <div id="page-top" className="header">
       <div className="desktop-header">
       <Link className="shop-title" to="/shop" >Shop</Link>
       <span className="title"><Link to="/" ><img className="logo" alt="Logo" src={Logo} /></Link></span>
@@ -52,6 +63,10 @@ export default class Header extends Component {
       </ul>
       </div>
       </div>
+
+      <div onClick={this.scrollToTop} id="anchor">
+      </div>
+
       </div>
     )
   }

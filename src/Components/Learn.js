@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { HashLink } from 'react-router-hash-link';
 let mttBlue = "#03a5ed"
 let mttOrange = "#EC7701"
 export default class Learn extends Component {
@@ -26,6 +27,8 @@ export default class Learn extends Component {
     }
     componentDidMount() {
         window.scrollTo(0, 0)
+        document.title = "myTouchSmart– Learn";
+
     }
     render(){
         let div={
@@ -84,16 +87,16 @@ export default class Learn extends Component {
                     let learnSection = {
                         textAlign: 'center'
                     }
-                    let shopLink= "/mytouchsmart/#/shop#" + learn.id;
+                    let shopLink= "/shop#" + learn.id;
                 return(
-            <div style={learnSection} key={learn.id}>
+            <div style={learnSection} key={learn.id} id={learn.id}>
                 <img className='learn-image' style={learnImage} src={learn.imageUrl} alt={learn.name}  />
                 <hr style={hr} />
-                <a style={link} href={shopLink}>
+                <HashLink style={link} to={shopLink}>
                     <button style={learnButton}>Shop {learn.name}
                          <span style={orangeTriangle}>&#9658;</span>
                     </button>
-                </a>
+                </HashLink>
             </div>
             ) })
         : <span>Loading...</span>}

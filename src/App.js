@@ -28,9 +28,10 @@ class App extends Component {
                         <Route path='/' exact component={Home} />
                         <Route path='/learn' exact component={Learn} />
                         <Route path='/shop' exact component={Shop} />
-                        <Footer />
 
                 </AnimatedSwitch>
+                <Footer />
+
                 </div>
                 </div>
             </Router>

@@ -4,9 +4,9 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import axios from 'axios';
 import Modal from 'react-responsive-modal';
+import { HashLink } from 'react-router-hash-link';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
-
 
 let mttBlue = "#03a5ed"
 let mttOrange = "#EC7701"
@@ -42,6 +42,8 @@ class YoutubeVid extends React.Component {
 class ProductRow extends Component {
     componentDidMount() {
         window.scrollTo(0, 0)
+        document.title = "myTouchSmart– Home";
+
     }
     render() {
     let productCenter = {
@@ -137,6 +139,7 @@ class CategorySection extends Component {
         let orangeTriangle = {
             color: mttOrange
         }
+        let learnLink= "/learn#" + this.props._id;
 
         if(this.props.float === 'right'){
             featuredCatImage.right= '0'
@@ -153,10 +156,10 @@ class CategorySection extends Component {
         </div>
         <p className="content" style={content}>{this.props.content}</p>
         <hr style={hr} />
-        <Link style={link} to="/learn" >
+        <HashLink style={link} to={learnLink} >
         <button style={learnButton}>Learn More 
         <span style={orangeTriangle}>&#9658;</span>
-        </button></Link>
+        </button></HashLink>
         <ProductRow products={this.props.products} />
         </div>
       )
@@ -169,11 +172,11 @@ class Home extends Component {
         categories: [
             {
                 "_id": "5b072cd4433f9954b89871d2",
-                "title": "EASY SET WIFI \n SMART PLUGS",
+                "title": "EASY SET WI-FI \n SMART PLUGS",
                 "background": "uploads/categories/2018-05-24T21:21:24.213ZiStock-515743697.jpg",
                 "featuredImage": "uploads/categories/2018-05-24T21:21:24.228Zwifi-homepage-header.png",
                 "float": "left",
-                "content": "Simplify your routine with myTouchSmart Wi-Fi Plug-in Smart Plugs. The easy‑to‑program smart switches work with incandescent, CFL, halogen and LED bulbs, delivering simple automation to your indoor lighting. The Wi-Fi-enabled smart plugs are compatible with Amazon Alexa and Google assistant and can be controlled using your mobile device – just down load the free, easy-to-use app for your Android or Apple device – making them ideal for varied routines.\n",
+                "content": "Simplify your routine with myTouchSmart Wi-Fi Plug-in Smart Plugs. The easy‑to‑program smart switches work with incandescent, CFL, halogen and LED bulbs, delivering simple automation to your indoor lighting. The Wi-Fi-enabled smart plugs are compatible with Amazon Alexa and Google assistant and can be controlled using your mobile device – just download the free, easy-to-use app for your Android or Apple device – making them ideal for varied routines.\n",
                 "learnLink": "#",
                 "request": {
                     "type": "GET"
@@ -208,7 +211,7 @@ class Home extends Component {
             {
                 "_id": "5b081c356dac047df76bfd04",
                 "name": "Easy Set Wi-Fi Smart Plug",
-                "price": 0,
+                "price": 29.99,
                 "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-25T14:22:45.240Z39844.jpg",
                 "sku": "39844",
@@ -224,7 +227,7 @@ class Home extends Component {
             {
                 "_id": "5b081c676dac047df76bfd05",
                 "name": "Easy Set Wi-Fi Smart Plug",
-                "price": 0,
+                "price": 34.99,
                 "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-25T14:23:35.162Z39845.jpg",
                 "sku": "39844",
@@ -260,7 +263,7 @@ class Home extends Component {
                 "price": 34.99,
                 "cartLink": "https://byjasco.com/products/1280/add-to-cart",
                 "imageURL": "uploads/products/2018-05-25T16:59:57.627Z35167.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/mytouchsmart-indooroutdoor-2-outlet-wireless-timer-system",
                 "sku": "35167",
                 "category": {
                     "_id": "5b072d1e433f9954b89871d3",
@@ -274,7 +277,7 @@ class Home extends Component {
             {
                 "_id": "5b0841899294171c3db65204",
                 "name": "Simple Set Plug-in Timer",
-                "price": 0,
+                "price": 29.99,
                 "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-25T17:02:01.341Z36027.jpg",
                 "productURL": "#",
@@ -291,10 +294,10 @@ class Home extends Component {
             {
                 "_id": "5b0841ab9294171c3db65205",
                 "name": "Simple Set Plug-in Timer",
-                "price": 0,
+                "price": 14.99,
                 "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-25T17:02:35.877Z26892.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/mytouchsmart-indoor-plug-digital-timer",
                 "sku": "26892",
                 "category": {
                     "_id": "5b072d1e433f9954b89871d3",
@@ -345,7 +348,7 @@ class Home extends Component {
                 "price": 24.99,
                 "cartLink": "https://byjasco.com/products/904/add-to-cart",
                 "imageURL": "uploads/products/2018-05-25T17:07:07.486Z26893.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/ge-mytouchsmart-wall-digital-timer",
                 "sku": "26893",
                 "category": {
                     "_id": "5b072d1e433f9954b89871d3",
@@ -376,10 +379,10 @@ class Home extends Component {
             {
                 "_id": "5b10247e9e33475ed881a5a6",
                 "name": "SunSmart™ Plug-in Timer",
-                "price": 0,
-                "cartLink": "#",
+                "price": 24.99,
+                "cartLink": "https://byjasco.com/products/878/add-to-cart",
                 "imageURL": "uploads/products/2018-05-31T16:36:14.900Z26898.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/mytouchsmart-indooroutdoor-plug-digital-timer",
                 "sku": "26898",
                 "category": {
                     "_id": "5b072d50433f9954b89871d4",
@@ -393,7 +396,7 @@ class Home extends Component {
             {
                 "_id": "5b10249b9e33475ed881a5a7",
                 "name": "SunSmart™ Plug-in Timer",
-                "price": 0,
+                "price": 17.99,
                 "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-31T16:36:43.797Z33860.jpg",
                 "productURL": "#",
@@ -457,7 +460,7 @@ class Home extends Component {
     render() {
         let categories = this.state.categories
         let products = this.state.products
-        let heroes = this.state.heroes   
+        let heroes = this.state.heroes 
         let open  = this.state.open;
 
         //////Hero Slider Settings////
@@ -466,7 +469,7 @@ class Home extends Component {
           }
           var HeroSliderSettings = {
             dots: true,
-            arrows: false,
+            arrows: true,
             infinite: true,
             speed: 500,
             slidesToShow: 1,
@@ -531,7 +534,7 @@ class Home extends Component {
                  if(hero.button === true){
                      return(
                     <div key={i} >
-                    <img onClick={this.onOpenModal} key={i} style={HeroSlideSettings} alt={hero.title} src={hero.heroImage} />
+                    <img className="hero-button" onClick={this.onOpenModal} key={i} style={HeroSlideSettings} alt={hero.title} src={hero.heroImage} />
                     <Modal open={open} onClose={this.onCloseModal} center>
                     <div>
                         <YoutubeVid />
@@ -545,7 +548,10 @@ class Home extends Component {
                 )
             })}
             </Slider>
-            <h2 style={sliderHeader}>Shop myTouchSmart</h2>
+            <div>
+            <Link className="shop-header" to="/shop">
+            <h3 style={sliderHeader}>Shop myTouchSmart</h3>
+            </Link>
             <Slider {...ProductSliderSettings}>
                 {products.map ((product, i) => {
                   let productCat = {
@@ -583,21 +589,7 @@ class Home extends Component {
                     width: '15em'
                   }
             ///Slider Products
-            if(product.cartLink === "#"){
-                return(
-                    <div key={i} >
-                    <div style={ProductSlideSettings} >
-                    <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
-                    <h4 style= {productCat}>{product.type}</h4>
-                    <span>{product.name}</span>
-                    <h5 style={priceStyle}>${product.price}</h5>
-                    <button className="prod-button" style={productButtonDisabled}>Coming Soon...</button>
-                    </div>
-                    </div>
-                  )
-            }
-
-            else{
+            if(product.cartLink !== "#"){
                 return(
                     <div key={i} >
                     <div style={ProductSlideSettings} >
@@ -617,6 +609,7 @@ class Home extends Component {
                   
             })}
             </Slider>
+            </div>
 
             
             {categories.map((category, i) => {
@@ -662,7 +655,7 @@ class Home extends Component {
                         <h4 style= {productCat}>{product.type}</h4>
                         <span>{product.name}</span>
                         <h5 style={priceStyle}>${product.price}</h5>
-                        <button className="prod-button" style={productButtonDisabled}>Coming Soon...</button>
+                        <button className="prod-button" style={productButtonDisabled}>Coming Soon</button>
                         </div>
                     )
                    } else {
@@ -691,7 +684,7 @@ class Home extends Component {
               float = {category.float}
               featuredimage = {category.featuredImage} 
               content={category.content} 
-              learnlink={category.learnLink}
+              _id={category._id}
               products={displayProduct} />
               
               )

@@ -69,6 +69,13 @@ ul > li >a {
   font-size: 3em;
 }
 
+.shop-header{
+  text-decoration: none;
+}
+.shop-header:hover{
+  text-decoration: none;
+}
+
 .content {
   padding: 6% 8% 6% 8%;
 }
@@ -145,7 +152,9 @@ ul > li >a {
   .featured-cat-image{
     min-width: 50%;
     min-height: 18em;
-  
+  }
+  .shop-header{
+    font-size: .6em;
   }
 
   .content {

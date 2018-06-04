@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
@@ -42,6 +41,8 @@ class ProductRow extends Component {
 class CategorySection extends Component {
     componentDidMount() {
         window.scrollTo(0, 0)
+        document.title = "myTouchSmart– Shop";
+
     }
     render() {        
         let title = {
@@ -117,11 +118,11 @@ class Shop extends Component {
                 }
             }
         ],
-        products:  [
+        products:    [
             {
                 "_id": "5b081c356dac047df76bfd04",
                 "name": "Easy Set Wi-Fi Smart Plug",
-                "price": 0,
+                "price": 29.99,
                 "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-25T14:22:45.240Z39844.jpg",
                 "sku": "39844",
@@ -137,7 +138,7 @@ class Shop extends Component {
             {
                 "_id": "5b081c676dac047df76bfd05",
                 "name": "Easy Set Wi-Fi Smart Plug",
-                "price": 0,
+                "price": 34.99,
                 "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-25T14:23:35.162Z39845.jpg",
                 "sku": "39844",
@@ -173,7 +174,7 @@ class Shop extends Component {
                 "price": 34.99,
                 "cartLink": "https://byjasco.com/products/1280/add-to-cart",
                 "imageURL": "uploads/products/2018-05-25T16:59:57.627Z35167.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/mytouchsmart-indooroutdoor-2-outlet-wireless-timer-system",
                 "sku": "35167",
                 "category": {
                     "_id": "5b072d1e433f9954b89871d3",
@@ -187,7 +188,7 @@ class Shop extends Component {
             {
                 "_id": "5b0841899294171c3db65204",
                 "name": "Simple Set Plug-in Timer",
-                "price": 0,
+                "price": 29.99,
                 "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-25T17:02:01.341Z36027.jpg",
                 "productURL": "#",
@@ -204,10 +205,10 @@ class Shop extends Component {
             {
                 "_id": "5b0841ab9294171c3db65205",
                 "name": "Simple Set Plug-in Timer",
-                "price": 0,
+                "price": 14.99,
                 "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-25T17:02:35.877Z26892.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/mytouchsmart-indoor-plug-digital-timer",
                 "sku": "26892",
                 "category": {
                     "_id": "5b072d1e433f9954b89871d3",
@@ -224,7 +225,7 @@ class Shop extends Component {
                 "price": 12.99,
                 "cartLink": "https://byjasco.com/products/1276/add-to-cart",
                 "imageURL": "uploads/products/2018-05-25T17:04:12.363Z36253.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/mytouchsmart-indoor-simple-set-plug-digital-bar-timer",
                 "sku": "36253",
                 "category": {
                     "_id": "5b072d1e433f9954b89871d3",
@@ -241,7 +242,7 @@ class Shop extends Component {
                 "price": 29.99,
                 "cartLink": "https://byjasco.com/products/1278/add-to-cart",
                 "imageURL": "uploads/products/2018-05-25T17:05:34.526Z35166.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/mytouchsmart-indoor-wireless-timer-system",
                 "sku": "35166",
                 "category": {
                     "_id": "5b072d1e433f9954b89871d3",
@@ -258,7 +259,7 @@ class Shop extends Component {
                 "price": 24.99,
                 "cartLink": "https://byjasco.com/products/904/add-to-cart",
                 "imageURL": "uploads/products/2018-05-25T17:07:07.486Z26893.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/ge-mytouchsmart-wall-digital-timer",
                 "sku": "26893",
                 "category": {
                     "_id": "5b072d1e433f9954b89871d3",
@@ -289,10 +290,10 @@ class Shop extends Component {
             {
                 "_id": "5b10247e9e33475ed881a5a6",
                 "name": "SunSmart™ Plug-in Timer",
-                "price": 0,
-                "cartLink": "#",
+                "price": 24.99,
+                "cartLink": "https://byjasco.com/products/878/add-to-cart",
                 "imageURL": "uploads/products/2018-05-31T16:36:14.900Z26898.jpg",
-                "productURL": "#",
+                "productURL": "https://byjasco.com/products/mytouchsmart-indooroutdoor-plug-digital-timer",
                 "sku": "26898",
                 "category": {
                     "_id": "5b072d50433f9954b89871d4",
@@ -306,7 +307,7 @@ class Shop extends Component {
             {
                 "_id": "5b10249b9e33475ed881a5a7",
                 "name": "SunSmart™ Plug-in Timer",
-                "price": 0,
+                "price": 17.99,
                 "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-31T16:36:43.797Z33860.jpg",
                 "productURL": "#",
@@ -417,7 +418,7 @@ class Shop extends Component {
                  <h4 style= {productCat}>{product.type}</h4>
                  <span>{product.name}</span>
                  <h5 style={priceStyle}>${product.price}</h5>
-                 <button className="prod-button" style={productButtonDisabled}>Coming Soon...</button>
+                 <button className="prod-button" style={productButtonDisabled}>Coming Soon</button>
                  </div>
              )
             } else {

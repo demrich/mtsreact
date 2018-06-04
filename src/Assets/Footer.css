@@ -1,7 +1,5 @@
 .footer {
     background: black;
-    position: relative;
-    bottom: 0;
     color: white;
 }
 
@@ -39,6 +37,8 @@ div.footer-col > ul > li {
     list-style-type: none;
 }
 
+
+
 .footer-notes {
     display: block;
     position: relative;
@@ -47,6 +47,11 @@ div.footer-col > ul > li {
     padding-top: 20px;
     padding-bottom: 20px;
     font-size: .75em;
+}
+
+div.footer-notes > span > a {
+    color:white;
+    text-decoration: none;
 }
 
    .social i.fa {
