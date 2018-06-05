@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import byJasco from "../../byjasco.svg";
 import "./../../Assets/Footer.css";
+import HubspotForm from 'react-hubspot-form'
 
 
 
-export default class Footer extends Component {
+export default class Footer extends Component {  
   render() {
     let cart = {width:'0', height:'0', border:'none'};
 
@@ -31,9 +32,29 @@ export default class Footer extends Component {
         <div className="footer-col">
         <h3>Newsletter Signup</h3>
         <div className="social">
-        <i className="fa fa-facebook" /><i className="fa fa-twitter" />
-        <i className="fa fa-pinterest" /><i className="fa fa-instagram" />
+        <a href="http://bit.ly/2lSMnU4">
+        <i className="fa fa-facebook" />
+        </a>
+        <a href="http://bit.ly/2m9jghN">
+        <i className="fa fa-twitter" />
+        </a>
+        <a href="http://bit.ly/2tjA0SM">
+        <i className="fa fa-pinterest" />
+        </a>
+        <a href="http://bit.ly/2uKWjVw">
+        <i className="fa fa-instagram" />
+        </a>
+        <a href="http://bit.ly/2w3rkTc">
         <i className="fa fa-youtube" />
+        </a>
+        <br/>        <br/>
+
+        <HubspotForm
+          css= '#email-66221cc5-2fcb-4fda-8682-38cfc6edb890 {background-color: white; margin-bottom:20px; border-radius:10px; border:none; padding: 5px;} .hs-button{background:#f47b2d; color:#fff; border-radius:10px; border:none; padding: 5px 20px;} .hs-field-desc {display:none !important;}'
+          portalId= '454248'
+          formId= '66221cc5-2fcb-4fda-8682-38cfc6edb890'
+        />
+
         </div>
         
 
@@ -44,7 +65,7 @@ export default class Footer extends Component {
         </div>
 
         <div className="footer-notes">
-        <span><a href="https://byjasco.com/trademark-information?__hstc=20260967.da027c5315d85dab3ba64f6b5bc238bf.1526412895839.1527780113528.1528119111164.4&__hssc=20260967.1.1528119111164&__hsfp=2971992012" target="_blank">Trademark Information</a>  | <a href="https://byjasco.com/terms-and-conditions" target="_blank">Terms and Conditions</a>  | <a href="https://byjasco.com/privacy-policy" target="_blank">Privacy Policy</a> </span> <br />
+        <span><a href="https://byjasco.com/trademark-information?__hstc=20260967.da027c5315d85dab3ba64f6b5bc238bf.1526412895839.1527780113528.1528119111164.4&__hssc=20260967.1.1528119111164&__hsfp=2971992012" rel="noopener noreferrer" target="_blank">Trademark Information</a>  | <a href="https://byjasco.com/terms-and-conditions" rel="noopener noreferrer" target="_blank">Terms and Conditions</a>  | <a href="https://byjasco.com/privacy-policy" rel="noopener noreferrer" target="_blank">Privacy Policy</a> </span> <br />
         <span>© 2017 Jasco Products Company. </span> <br /> <br />
         </div>
         <iframe title="cart" id="result" style={cart} />

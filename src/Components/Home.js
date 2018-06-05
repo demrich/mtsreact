@@ -8,6 +8,7 @@ import { HashLink } from 'react-router-hash-link';
 import { Link } from 'react-router-dom';
 import YouTube from 'react-youtube';
 
+
 let mttBlue = "#03a5ed"
 let mttOrange = "#EC7701"
 let link = {
@@ -16,12 +17,18 @@ let link = {
 
 class YoutubeVid extends React.Component {
     render() {
-      const opts = {
+      let opts = {
         height: '390',
         width: '640',
         playerVars: { // https://developers.google.com/youtube/player_parameters
         }
       };
+
+      if (document.documentElement.clientWidth < 640) {
+         opts = {
+            height: '185',
+            width: '320'
+          };    }
    
       return (
         <YouTube
@@ -380,7 +387,7 @@ class Home extends Component {
                 "_id": "5b10247e9e33475ed881a5a6",
                 "name": "SunSmart™ Plug-in Timer",
                 "price": 24.99,
-                "cartLink": "https://byjasco.com/products/878/add-to-cart",
+                "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-31T16:36:14.900Z26898.jpg",
                 "productURL": "https://byjasco.com/products/mytouchsmart-indooroutdoor-plug-digital-timer",
                 "sku": "26898",
@@ -532,15 +539,15 @@ class Home extends Component {
             <Slider {...HeroSliderSettings}>
             {heroes.map((hero, i) => {
                  if(hero.button === true){
-                     return(
-                    <div key={i} >
-                    <img className="hero-button" onClick={this.onOpenModal} key={i} style={HeroSlideSettings} alt={hero.title} src={hero.heroImage} />
-                    <Modal open={open} onClose={this.onCloseModal} center>
-                    <div>
-                        <YoutubeVid />
-                    </div>
-                    </Modal>
-                    </div>
+                    return(
+                        <div key={i} >
+                        <img className="hero-button" onClick={this.onOpenModal} key={i} style={HeroSlideSettings} alt={hero.title} src={hero.heroImage} />
+                        <Modal open={open} onClose={this.onCloseModal} center>
+                        <div>
+                            <YoutubeVid />
+                        </div>
+                        </Modal>
+                        </div>
                      )
                     }
                 return(
@@ -574,16 +581,6 @@ class Home extends Component {
                       textTransform: 'uppercase'
 
                   }
-                  let productButtonDisabled = {
-                    background: 'grey',
-                    color: 'white',
-                    padding: '.5em 1em .5em 1em',
-                    border: 'none',
-                    borderRadius: '1em',
-                    fontSize: '1em',
-                    textTransform: 'uppercase',
-
-                }
                   let imageSpecs = {
                     margin: 'auto',
                     width: '15em'
@@ -648,7 +645,22 @@ class Home extends Component {
                 }
             ///Products
                if(category._id === product.category._id) {
-                   if(product.cartLink === '#'){
+                   if(product._id === "5b0841ab9294171c3db65205"){
+                    return (
+                        <div className="product-card" key={i}>
+                        <a key={product.sku} href={product.productURL}>                        
+                        <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
+                        </a>
+                        <h4 style= {productCat}>{product.type}</h4>
+                        <span>{product.name}</span>
+                        <h5 style={priceStyle}>${product.price}</h5>
+                        <a href={product.productURL}>                        
+                        <button className="prod-button" style={productButton}>View Details</button>
+                        </a>
+                        </div>
+                    )
+                   }
+                   else if(product.cartLink === '#'){
                     return (
                         <div className="product-card" key={i}>
                         <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />

@@ -3,6 +3,8 @@ import Logo from "../../logo.png";
 import "./../../Assets/Header.css";
 import { Link } from 'react-router-dom';
 import { animateScroll as scroll } from 'react-scroll'
+import ScrollToTop from 'react-scroll-up'
+
 
 export default class Header extends Component {
   constructor(){
@@ -15,15 +17,10 @@ export default class Header extends Component {
     this.setState({hidden: !this.state.hidden})
   }
 
+
   scrollToTop(){
     scroll.scrollToTop();
   }
-  
-  
-
-  
-  
-
   render() {
     let toggle = this.state.hidden ? "mobile-sub hidden" : "mobile-sub visible"
 
@@ -63,10 +60,9 @@ export default class Header extends Component {
       </ul>
       </div>
       </div>
-
-      <div onClick={this.scrollToTop} id="anchor">
-      </div>
-
+       <ScrollToTop showUnder={160}>
+       <div id="anchor" />
+      </ScrollToTop>
       </div>
     )
   }

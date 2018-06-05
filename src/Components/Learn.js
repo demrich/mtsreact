@@ -87,7 +87,7 @@ export default class Learn extends Component {
                     let learnSection = {
                         textAlign: 'center'
                     }
-                    let shopLink= "/shop#" + learn.id;
+                    let shopLink= "/shop";
                 return(
             <div style={learnSection} key={learn.id} id={learn.id}>
                 <img className='learn-image' style={learnImage} src={learn.imageUrl} alt={learn.name}  />

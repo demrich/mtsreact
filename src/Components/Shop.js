@@ -118,7 +118,7 @@ class Shop extends Component {
                 }
             }
         ],
-        products:    [
+        products:  [
             {
                 "_id": "5b081c356dac047df76bfd04",
                 "name": "Easy Set Wi-Fi Smart Plug",
@@ -291,7 +291,7 @@ class Shop extends Component {
                 "_id": "5b10247e9e33475ed881a5a6",
                 "name": "SunSmart™ Plug-in Timer",
                 "price": 24.99,
-                "cartLink": "https://byjasco.com/products/878/add-to-cart",
+                "cartLink": "#",
                 "imageURL": "uploads/products/2018-05-31T16:36:14.900Z26898.jpg",
                 "productURL": "https://byjasco.com/products/mytouchsmart-indooroutdoor-plug-digital-timer",
                 "sku": "26898",
@@ -409,18 +409,31 @@ class Shop extends Component {
                 }
            ///Products
            if(category._id === product.category._id) {
-            if(product.cartLink === '#'){
-             return (
-                 <div className="product-card" key={i}>
-                 <a key={product.sku} href={product.productURL}>
-                 <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
-                 </a>
-                 <h4 style= {productCat}>{product.type}</h4>
-                 <span>{product.name}</span>
-                 <h5 style={priceStyle}>${product.price}</h5>
-                 <button className="prod-button" style={productButtonDisabled}>Coming Soon</button>
-                 </div>
-             )
+            if(product._id === "5b0841ab9294171c3db65205"){
+                return (
+                    <div className="product-card" key={i}>
+                    <a key={product.sku} href={product.productURL}>                        
+                    <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
+                    </a>
+                    <h4 style= {productCat}>{product.type}</h4>
+                    <span>{product.name}</span>
+                    <h5 style={priceStyle}>${product.price}</h5>
+                    <a href={product.productURL}>                        
+                    <button className="prod-button" style={productButton}>View Details</button>
+                    </a>
+                    </div>
+                )
+               }
+               else if(product.cartLink === '#'){
+                return (
+                    <div className="product-card" key={i}>
+                    <img alt={product.name} style={imageSpecs} id={product.sku} src={product.imageURL} />
+                    <h4 style= {productCat}>{product.type}</h4>
+                    <span>{product.name}</span>
+                    <h5 style={priceStyle}>${product.price}</h5>
+                    <button className="prod-button" style={productButtonDisabled}>Coming Soon</button>
+                    </div>
+                )
             } else {
              return (
                  <div className="product-card" key={i}>
@@ -430,7 +443,7 @@ class Shop extends Component {
                  <h4 style= {productCat}>{product.type}</h4>
                  <span>{product.name}</span>
                  <h5 style={priceStyle}>${product.price}</h5>
-                 <a href={product.cartLink} target="_blank">
+                 <a href={product.cartLink} rel="noopener noreferrer" target="_blank">
                  <button className="prod-button" style={productButton}>Add to Cart</button>
                  </a>
                  </div>

@@ -79,12 +79,9 @@ div.outputs > ul > li > a:visited {
 /* Scroll-to-top Anchor*/
 
 #anchor {
-    position: absolute;
     z-index: 999;
-    min-width: 6em;
-    min-height: 6em;
-    top: 80vh;
-    right: 5vw;
+    min-width: 4em;
+    min-height: 4em;
     background:transparent url(/img/anchor.svg) center top no-repeat;
 }
 
