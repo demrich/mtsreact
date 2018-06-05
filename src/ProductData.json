@@ -120,6 +120,9 @@
             "type": "Outdoor/ Indoor",
             "request": {
                 "type": "GET"
+            },
+            "support": {
+                "manual": "uploads/products/manuals/35167-EnSp-Manual-v2.pdf"
             }
         },
         {
@@ -137,6 +140,9 @@
             "type": "Outdoor/ Indoor",
             "request": {
                 "type": "GET"
+            },
+            "support": {
+                "manual": "uploads/products/manuals/36027-EnSp-Man-V2.pdf"
             }
         },
         {
@@ -154,6 +160,9 @@
             "type": "Indoor",
             "request": {
                 "type": "GET"
+            },
+            "support": {
+                "manual": "uploads/products/manuals/26892-28443-Manual-Version-2.pdf"
             }
         },
         {
@@ -171,6 +180,9 @@
             "type": "Indoor",
             "request": {
                 "type": "GET"
+            },
+            "support": {
+                "manual": "uploads/products/manuals/36253-EnSp-Manual-V2.pdf"
             }
         },
         {
@@ -188,6 +200,9 @@
             "type": "Indoor",
             "request": {
                 "type": "GET"
+            },
+            "support": {
+                "manual": "uploads/products/manuals/35166-EnSp-Manual-v1.pdf"
             }
         },
         {
@@ -205,6 +220,9 @@
             "type": "In-Wall",
             "request": {
                 "type": "GET"
+            },
+            "support": {
+                "manual": "uploads/products/manuals/26893-Wiring-Manual-Version-2.pdf"
             }
         },
         {
@@ -222,6 +240,9 @@
             "type": "In-Wall",
             "request": {
                 "type": "GET"
+            },
+            "support": {
+                "manual": "uploads/products/manuals/33861-EnSp-Manual-V1.pdf"
             }
         },
         {
@@ -239,6 +260,9 @@
             "type": "Outdoor/ Indoor",
             "request": {
                 "type": "GET"
+            },
+            "support": {
+                "manual": "uploads/products/manuals/26898-Manual-Version-2.pdf"
             }
         },
         {
@@ -256,6 +280,9 @@
             "type": "Indoor",
             "request": {
                 "type": "GET"
+            },
+            "support": {
+                "manual": "uploads/products/manuals/33860-EnSp-Manual-V1.pdf"
             }
         }
     ],
