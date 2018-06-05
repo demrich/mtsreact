@@ -1,30 +1,10 @@
 import React, { Component } from 'react';
 import { HashLink } from 'react-router-hash-link';
+import SiteData from '../ProductData.json';
 let mttBlue = "#03a5ed"
 let mttOrange = "#EC7701"
 export default class Learn extends Component {
-    state= {
-        learn: [ 
-        {
-            id: "5b072cd4433f9954b89871d2",
-            name: 'Easy Set Wifi Smart Plugs',
-            imageUrl: 'uploads/categories/learn-wifi.jpg',
-            shopLink: 'myselecsmart/shop#smartplug'
-        },
-        {
-            id: "5b072d1e433f9954b89871d3",
-            name: 'Simple Set Timers',
-            imageUrl: 'uploads/categories/learn-simpleset.jpg',
-            shopLink: 'myselecsmart/shop#timer'
-        },
-        {
-            id: "5b072d50433f9954b89871d4",
-            name: 'SunSmart™ Timers',
-            imageUrl: 'uploads/categories/learn-sunsmart.jpg',
-            shopLink: 'myselecsmart/shop#sunsmart'
-        }
-    ]
-    }
+    state= SiteData
     componentDidMount() {
         window.scrollTo(0, 0)
         document.title = "myTouchSmart– Learn";
