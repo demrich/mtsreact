@@ -3,7 +3,8 @@
 body, html{
   font-family: "Gotham Rounded SSm A", "Gotham Rounded SSm B", sans-serif;
 	text-rendering: optimizeLegibility !important;
-	-webkit-font-smoothing: antialiased !important;
+  -webkit-font-smoothing: antialiased !important;
+  overflow-x: hidden;
 
 }
 

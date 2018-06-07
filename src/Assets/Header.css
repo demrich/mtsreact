@@ -128,16 +128,14 @@ div.outputs > ul > li > a:visited {
     cursor: pointer;
 }
 .mobile-sub{
-    min-height: 30vh;
     min-width: 100vw;
     background:black;
     transition: all .5s cubic-bezier(0, 1.22, 1, 1); 
     position: absolute;  
+    margin-top: -5px;
 }
 
-.submenu-items{
-    padding-top: 11em;
-}
+
 
 ul.submenu-items > li {
     font-size: 1.2em;

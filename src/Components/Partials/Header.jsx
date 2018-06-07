@@ -25,7 +25,17 @@ export default class Header extends Component {
     let toggle = this.state.hidden ? "mobile-sub hidden" : "mobile-sub visible"
 
     return (
-      
+      <div>
+      <div className={toggle}>
+        <ul className="submenu-items">
+          <li>
+          <Link to="/shop" >Shop</Link>
+          </li>
+          <li>
+          <Link to="/learn" >Learn</Link>
+          </li>
+        </ul>
+      </div>
       <div id="page-top" className="header">
       <div className="desktop-header">
       <Link className="shop-title" to="/shop" >Shop</Link>
@@ -38,16 +48,6 @@ export default class Header extends Component {
 
       </ul>
       </div>
-      </div>
-            <div className={toggle}>
-      <ul className="submenu-items">
-        <li>
-        <Link to="/shop" >Shop</Link>
-        </li>
-        <li>
-        <Link to="/learn" >Learn</Link>
-        </li>
-      </ul>
       </div>
       <div className="mobile-header">
       <span className="title"><Link to="/" ><img className="logo" alt="Logo" src={Logo} /></Link></span>
@@ -63,6 +63,7 @@ export default class Header extends Component {
        <ScrollToTop showUnder={160}>
        <div id="anchor" />
       </ScrollToTop>
+      </div>
       </div>
     )
   }

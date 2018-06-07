@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import byJasco from "../../byjasco.svg";
 import "./../../Assets/Footer.css";
 import HubspotForm from 'react-hubspot-form'
+import { Link } from 'react-router-dom';
 
 
 
@@ -24,7 +25,7 @@ export default class Footer extends Component {
         <div className="footer-col">
         <h3>Need Help?</h3>
         <ul>
-            <li><a href="https://byjasco.com/support">Visit Support </a></li>
+            <li><Link to="/support">Visit Support </Link></li>
             <li><a href="https://byjasco.com/brands/mytouchsmart">Jasco Online Store</a></li>
         </ul>
         
@@ -44,7 +45,7 @@ export default class Footer extends Component {
         <a href="http://bit.ly/2uKWjVw">
         <i className="fa fa-instagram" />
         </a>
-        <a href="http://bit.ly/2w3rkTc">
+        <a href="https://bit.ly/2Jtag2t">
         <i className="fa fa-youtube" />
         </a>
         <br/>        <br/>

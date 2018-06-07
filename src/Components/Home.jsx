@@ -15,6 +15,21 @@ let link = {
     textDecoration: 'none'
 }
 
+class AddToCart extends Component {
+    render(){
+        return(
+            <div>
+                <iframe 
+                title="result" 
+                style={{width: '0', height: '0', border: 'none'}}
+                src={this.props.addedCart}
+                 />
+            </div>
+        )
+    }
+
+}
+
 class YoutubeVid extends React.Component {
     render() {
       let opts = {
@@ -47,11 +62,6 @@ class YoutubeVid extends React.Component {
    
 
 class ProductRow extends Component {
-    componentDidMount() {
-        window.scrollTo(0, 0)
-        document.title = "myTouchSmart– Home";
-
-    }
     render() {
     let productCenter = {
         textAlign: 'center',
@@ -64,9 +74,6 @@ class ProductRow extends Component {
     return(
         <div style={productCenter}>
             {this.props.products}
-            {/* <Columns dimensions={dimensions} queries={queries}>
-            {this.props.products}
-            </Columns> */}
         </div>
     )}
 }
@@ -80,9 +87,6 @@ class CategorySection extends Component {
             backgroundPosition: 'top center',
             width: '100%',
         }
-
-
-
         let featuredCatImage = {
             background: 'url(' + this.props.featuredimage + ') no-repeat',
             backgroundSize: 'contain',
@@ -92,7 +96,6 @@ class CategorySection extends Component {
             float: this.props.float,
             backgroundPosition: this.props.float,
         }
-
         let titleBar = {
             display: 'flex',
             alignItems: 'center',
@@ -103,7 +106,6 @@ class CategorySection extends Component {
             textAlign: 'center',
             whiteSpace: 'pre-line'
         }
-
         let title = {
             color: 'white',
             textTransform: 'uppercase',
@@ -111,7 +113,6 @@ class CategorySection extends Component {
             margin: '10px 0 10px 2.5em',
             letterSpacing: '.05em'
         }
-
         let content = {
             textAlign: 'center',
             fontSize: '1em',
@@ -120,14 +121,13 @@ class CategorySection extends Component {
             fontWeight: '300',
             width: '70%'            
         }
-
         let hr = {
             width: '75%',
             color: '#eee',
             backgrundCOlor: '#eee',
             border: 'none',
             borderTop: '1px solid #929292'
-            }
+        }
         let learnButton = {
             display: '-webkit-box',
             position: 'relative',
@@ -142,7 +142,6 @@ class CategorySection extends Component {
             color: "white" ,
             fontSize: '1.5em'       
         }
-
         let orangeTriangle = {
             color: mttOrange
         }
@@ -152,7 +151,6 @@ class CategorySection extends Component {
             featuredCatImage.right= '0'
             title.margin ='10px 100px 10px 0'
         }
-
 
       return (
         <div {...this.props} className="category">
@@ -174,6 +172,12 @@ class CategorySection extends Component {
 }
 
 class Home extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0)
+        document.title = "myTouchSmart– Home";
+
+    }
+
     state = SiteData
         onOpenModal = () => {
             this.setState({ open: true });
@@ -181,12 +185,20 @@ class Home extends Component {
         
         onCloseModal = () => {
             this.setState({ open: false });
-        };
+        };  
+
+        handleClick(cartLink, e){
+            this.setState({
+                    addCart: cartLink
+            })
+           }
+    
     render() {
         let categories = this.state.categories
         let products = this.state.products
         let heroes = this.state.heroes 
-        let open  = this.state.open;
+        let open  = this.state.open
+        let addCart = this.state.addCart
 
         //////Hero Slider Settings////
         let HeroSlideSettings = {
@@ -249,6 +261,7 @@ class Home extends Component {
               ]
           };
         ////////////////////////
+        
 
         return (
         <div className="app">
@@ -303,7 +316,9 @@ class Home extends Component {
                     margin: 'auto',
                     width: '15em'
                   }
+                  
             ///Slider Products
+            
             if(product.cartLink !== "#"){
                 return(
                     <div key={i} >
@@ -397,15 +412,19 @@ class Home extends Component {
                         <h4 style= {productCat}>{product.type}</h4>
                         <span>{product.name}</span>
                         <h5 style={priceStyle}>${product.price}</h5>
-                        <a href={product.cartLink} target="_blank">
-                        <button className="prod-button" style={productButton}>Add to Cart</button>
-                        </a>
+                        <button  
+                        className="prod-button" 
+                        style={productButton}
+                        onClick={this.handleClick.bind(this, product.cartLink)}
+                        >
+                        Add to Cart
+                        </button>
                         </div>
                     )
                    }
                    }
             })
-
+            let FilteredDisplayProduct = displayProduct.filter(product => product !== undefined)
               return (
               <CategorySection 
               key={i} 
@@ -415,12 +434,15 @@ class Home extends Component {
               featuredimage = {category.featuredImage} 
               content={category.content} 
               _id={category._id}
-              products={displayProduct} />
-              
+              products={FilteredDisplayProduct} />
               )
             }
-          )}
-            </div>
+          )
+          }
+
+          <AddToCart addedCart={addCart} />
+
+          </div>       
            : <div className="border-loading-indicator col-2 row-2"></div> }
         
         </div>
